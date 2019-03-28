@@ -48,7 +48,7 @@
         </StackPanel>
 
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Background="WhiteSmoke">
             <StackPanel Width="200"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">                
@@ -63,8 +63,10 @@
                           Margin="5"
                           Content="Checker"/>
 
-                <TextBox Margin="5"/>
+                <TextBox Margin="5" IsEnabled="{Binding ElementName=check, Path=IsChecked}"/>
 
+                <TextBox Margin="5"/>
+                
 
             </StackPanel>
         </Grid>

@@ -5,8 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileRenamer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="500" Width="800" Background="White">
+
+    <Window.Resources>
         
+        <Style TargetType="Button" x:Key="Base">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Button.Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" Direction="320" ShadowDepth="3" BlurRadius="5" Opacity="0.5" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style TargetType="Button" x:Key="Default" BasedOn="{StaticResource Base}">
+            <Setter Property="Background" Value="#FF44A9EC"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="Error" BasedOn="{StaticResource Base}">
+            <Setter Property="Background" Value="Black"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="Gray">
+            <TextBlock Text="Menu" TextAlignment="Center" Foreground="White"/>
+            <Button Content="My Account" Style="{StaticResource Default}"/>
+            <Button Content="Purchase" Style="{StaticResource Default}"/>
+            <Button Content="Sale" Style="{StaticResource Error}"/>
+        </StackPanel>
+
+
+        <Grid Grid.Column="1">
+            <TextBlock
+                Name="MainTextBlock"
+                FontSize="30"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="Content" />
+        </Grid>
+
     </Grid>
+
+
+
 </Window>

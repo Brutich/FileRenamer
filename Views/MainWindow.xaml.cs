@@ -24,7 +24,6 @@ namespace FileRenamer
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
 
     }

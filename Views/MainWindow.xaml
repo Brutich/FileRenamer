@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileRenamer"
+        xmlns:viewmodels="clr-namespace:FileRenamer.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800" Background="White">
 
+    <Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </Window.DataContext>
+    
     <Window.Resources>
         
         <Style TargetType="Button" x:Key="Base">
@@ -41,7 +46,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Background="LightGray">
-            <Button Content="New" Style="{StaticResource Default}" />
+            <Button Command="{Binding ClickAdd}" Content="New" Style="{StaticResource Default}" />
             <Button Content="Open" Style="{StaticResource Error}" />
             <Button Content="Save" Style="{StaticResource Error}"/>
         </StackPanel>

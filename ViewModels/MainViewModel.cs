@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileRenamer.MVVP;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -39,17 +40,14 @@ namespace FileRenamer.ViewModels
             }
         }
 
-        public MainViewModel()
-        {
-            Task.Factory.StartNew(() =>
-            {
-                while (true)
-                {
-                    Task.Delay(1000).Wait();
 
-                    Clicks++;
-                }
-            });
+        public DelegateCommand ClickAdd
+        {
+            get
+            {
+                return new DelegateCommand((obj) => { Clicks++;}, (obj) => Clicks < 10);
+            }
+
         }
 
     }

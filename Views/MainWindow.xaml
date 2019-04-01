@@ -10,7 +10,7 @@
         Title="MainWindow" Height="500" Width="800" Background="White">
 
     <Window.DataContext>
-        <viewmodels:MainViewModel/>
+        <local:ApplicationViewModel/>
     </Window.DataContext>
 
     <Window.Resources>
@@ -34,6 +34,7 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="160"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -57,18 +58,47 @@
                 <controls:FolderSelection Height="20" Tag="F" Margin="5"/>
 
             </StackPanel>
-
-
-            <ScrollViewer Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" >
-
-                <StackPanel Margin="5, 20" >
-                    <controls:NameMapping Width="Auto" />
-                    <controls:NameMapping Width="Auto" />
-                    <controls:NameMapping Width="Auto" />
-                </StackPanel>
-
-            </ScrollViewer>
             
+
+            <ListBox Grid.Row="1"
+                     ItemsSource="{Binding FileNameConvertions}"
+                     SelectedItem="{Binding SelectedFileNameConvertion}"
+                     Background="{x:Null}" 
+                     BorderBrush="{x:Null}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" Margin="5" Height="20" VerticalAlignment="Top"
+                                    Command="{Binding RemoveCommand}"
+                                    CommandParameter="{Binding SelectedFileNameConvertion}">-</Button>
+
+                            <TextBox Grid.Column="1"
+                                     Margin="5"
+                                     Height="20"
+                                     VerticalAlignment="Top"
+                                     Text="{Binding Path=NameNew}"/>
+                            
+                            <TextBlock Grid.Column="2" Text="-->"/>
+
+                            <TextBox Grid.Column="3"
+                                     Margin="5"
+                                     Height="20"
+                                     VerticalAlignment="Top"
+                                     Text="{Binding Path=NameOld}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>                
+            </ListBox>
+
+            <Button Grid.Row="2" Command="{Binding AddCommand}">+</Button>
+
             <Separator Margin="10, 0"  VerticalAlignment="Bottom" Background="#FFC1C1C1" />
 
         </Grid>

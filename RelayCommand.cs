@@ -5,14 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace FileRenamer.MVVP
+namespace FileRenamer
 {
-    class DelegateCommand : ICommand
+    public class RelayCommand : ICommand
     {
-
-
         private Action<object> execute;
-
         private Func<object, bool> canExecute;
 
         public event EventHandler CanExecuteChanged
@@ -21,7 +18,7 @@ namespace FileRenamer.MVVP
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public DelegateCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             this.execute = execute;
             this.canExecute = canExecute;

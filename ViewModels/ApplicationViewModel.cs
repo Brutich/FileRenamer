@@ -11,9 +11,8 @@ namespace FileRenamer
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
-        private FileNameConvertion _SelectedFileNameConvertion;
-
-        public ObservableCollection<FileNameConvertion> FileNameConvertions { get; set; }
+        private FileNameConvertion selectedFileNameConvertion;
+        public ObservableCollection<FileNameConvertion> NameConvertions { get; set; }
 
         // команда добавления нового объекта
         private RelayCommand addCommand;
@@ -25,8 +24,8 @@ namespace FileRenamer
                   (addCommand = new RelayCommand(obj =>
                   {
                       FileNameConvertion convertion = new FileNameConvertion();
-                      FileNameConvertions.Insert(0, convertion);
-                      SelectedFileNameConvertions = convertion;
+                      NameConvertions.Insert(0, convertion);
+                      SelectedFileNameConvertion = convertion;
                   }));
             }
         }
@@ -44,27 +43,26 @@ namespace FileRenamer
                       FileNameConvertion convertion = obj as FileNameConvertion;
                       if (convertion != null)
                       {
-                          FileNameConvertions.Remove(convertion);
+                          NameConvertions.Remove(convertion);
                       }
                   },
-                 (obj) => FileNameConvertions.Count > 0));
+                 (obj) => NameConvertions.Count > 0));
             }
         }
-
-
-        public FileNameConvertion SelectedFileNameConvertions
+        
+        public FileNameConvertion SelectedFileNameConvertion
         {
-            get { return _SelectedFileNameConvertion; }
+            get { return selectedFileNameConvertion; }
             set
             {
-                _SelectedFileNameConvertion = value;
-                OnPropertyChanged("SelectedFileNameConvertions");
+                selectedFileNameConvertion = value;
+                OnPropertyChanged("SelectedFileNameConvertion");
             }
         }
 
         public ApplicationViewModel()
         {
-            FileNameConvertions = new ObservableCollection<FileNameConvertion>
+            NameConvertions = new ObservableCollection<FileNameConvertion>
             {
                 new FileNameConvertion { NameOld="iPhone 7", NameNew="Apple" },
                 new FileNameConvertion { NameOld="Galaxy S7 Edge", NameNew="Samsung" },

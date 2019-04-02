@@ -26,7 +26,7 @@
         <StackPanel Background="LightGray">
             <Button Command="{Binding ClickAdd}" Content="New" Style="{DynamicResource Default}" />
             <Button Content="Open" Style="{DynamicResource Error}"/>
-            <Button Content="Save" Style="{StaticResource Error}"/>
+            <Button Content="Save" Style="{DynamicResource Error}"/>
         </StackPanel>
 
 
@@ -61,13 +61,13 @@
             
 
             <ListBox Grid.Row="1"
-                     ItemsSource="{Binding FileNameConvertions}"
+                     ItemsSource="{Binding NameConvertions}"
                      SelectedItem="{Binding SelectedFileNameConvertion}"
                      Background="{x:Null}" 
                      BorderBrush="{x:Null}">
                 <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
+                    <DataTemplate>                        
+                        <Grid RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" MinWidth="600" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
@@ -75,9 +75,9 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Grid.Column="0" Margin="5" Height="20" VerticalAlignment="Top"
-                                    Command="{Binding RemoveCommand}"
-                                    CommandParameter="{Binding SelectedFileNameConvertion}">-</Button>
+                            <Button Grid.Column="0"
+                                    Margin="5" Height="20"
+                                    VerticalAlignment="Top">-</Button>
 
                             <TextBox Grid.Column="1"
                                      Margin="5"
@@ -85,7 +85,7 @@
                                      VerticalAlignment="Top"
                                      Text="{Binding Path=NameNew}"/>
                             
-                            <TextBlock Grid.Column="2" Text="-->"/>
+                            <TextBlock Grid.Column="2" Text="-->" VerticalAlignment="Center"/>
 
                             <TextBox Grid.Column="3"
                                      Margin="5"
@@ -97,7 +97,18 @@
                 </ListBox.ItemTemplate>                
             </ListBox>
 
-            <Button Grid.Row="2" Command="{Binding AddCommand}">+</Button>
+            <Button Grid.Row="2" Height="30" Width="30" Command="{Binding AddCommand}">
+                +
+            </Button>
+
+            <Button Grid.Row="2" 
+                    Height="30"
+                    Width="30" 
+                    Command="{Binding RemoveCommand}"
+                    CommandParameter="{Binding SelectedFileNameConvertion}"
+                    HorizontalAlignment="Left">
+                -
+            </Button>
 
             <Separator Margin="10, 0"  VerticalAlignment="Bottom" Background="#FFC1C1C1" />
 

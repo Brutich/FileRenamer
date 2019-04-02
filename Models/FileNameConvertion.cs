@@ -10,25 +10,25 @@ namespace FileRenamer
 {
     public class FileNameConvertion : INotifyPropertyChanged
     {
-        private string _NameOld;
-        private string _NameNew;
+        private string nameOld;
+        private string nameNew;
 
 
         public string NameOld
         {
-            get { return _NameOld; }
+            get { return nameOld; }
             set
             {
-                _NameOld = value;
+                nameOld = value;
                 OnPropertyChanged("NameOld");
             }
         }
         public string NameNew
         {
-            get { return _NameNew; }
+            get { return nameNew; }
             set
             {
-                _NameNew = value;
+                nameNew = value;
                 OnPropertyChanged("NameNew");
             }
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileRenamer.ViewModels
 {
-    class Class1
+    class Classss
     {
     }
 }

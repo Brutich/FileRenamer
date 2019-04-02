@@ -26,6 +26,7 @@ namespace FileRenamer.Controls
         public FolderSelection()
         {
             InitializeComponent();
+            DataContext = new ApplicationViewModel();
         }
 
         public string FolderPath { get; set; }
@@ -44,74 +45,4 @@ namespace FileRenamer.Controls
         }
     }
 
-
-
-    /* WIP
-
-    class MainViewModel : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-
-        private int _Clicks;
-
-        public int Clicks
-        {
-            get { return _Clicks; }
-
-            set
-            {
-                _Clicks = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        public DelegateCommand ClickAdd
-        {
-            get
-            {
-                return new DelegateCommand((obj) => { Clicks++; }, (obj) => Clicks < 10);
-            }
-
-        }
-
-    }
-
-    class DelegateCommand : ICommand
-    {
-
-
-        private Action<object> execute;
-
-        private Func<object, bool> canExecute;
-
-        public event EventHandler CanExecuteChanged
-        {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
-        }
-
-        public DelegateCommand(Action<object> execute, Func<object, bool> canExecute = null)
-        {
-            this.execute = execute;
-            this.canExecute = canExecute;
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return this.canExecute == null || this.canExecute(parameter);
-        }
-
-        public void Execute(object parameter)
-        {
-            this.execute(parameter);
-        }
-    }
-
-    */
 }

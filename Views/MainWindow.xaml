@@ -1,4 +1,4 @@
-﻿<Window x:Class="FileRenamer.MainWindow"
+﻿<Window x:Name="window" x:Class="FileRenamer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,7 +14,7 @@
     </Window.DataContext>
 
     <Window.Resources>
-        
+
     </Window.Resources>
 
     <Grid>
@@ -35,10 +35,10 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="160"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            
+
             <StackPanel Margin="5,5,5,0"
                         VerticalAlignment="Top">
 
@@ -54,20 +54,23 @@
                           Content="Checker"/>
 
                 <TextBox Margin="5" IsEnabled="{Binding ElementName=check, Path=IsChecked}"/>
-                <controls:FolderSelection Height="20" Tag="From" Margin="5"/>
-                <controls:FolderSelection Height="20" Tag="F" Margin="5"/>
+                <controls:FolderSelection x:Name="folderFrom" Height="20" Margin="5"/>
+                <controls:FolderSelection x:Name="folderTo" Height="20" Margin="5"/>
 
             </StackPanel>
-            
 
-            <ListBox Grid.Row="1"
+
+            <ListBox x:Name="listBox" Grid.Row="1"
                      ItemsSource="{Binding NameConvertions}"
                      SelectedItem="{Binding SelectedFileNameConvertion}"
+                     SelectionMode="Single"
                      Background="{x:Null}" 
-                     BorderBrush="{x:Null}">
+                     BorderBrush="{x:Null}"
+                     >
                 <ListBox.ItemTemplate>
-                    <DataTemplate>                        
-                        <Grid RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" MinWidth="600" >
+                    <DataTemplate>
+                        <Grid Width="{Binding Content.ActualWidth, ElementName=folderTo, Mode=OneWay}">
+
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
@@ -84,26 +87,29 @@
                                      Height="20"
                                      VerticalAlignment="Top"
                                      Text="{Binding Path=NameNew}"/>
-                            
+
                             <TextBlock Grid.Column="2" Text="-->" VerticalAlignment="Center"/>
 
                             <TextBox Grid.Column="3"
-                                     Margin="5"
+                                     Margin="5,5,-5,0"
                                      Height="20"
                                      VerticalAlignment="Top"
                                      Text="{Binding Path=NameOld}"/>
                         </Grid>
                     </DataTemplate>
-                </ListBox.ItemTemplate>                
+                </ListBox.ItemTemplate>
             </ListBox>
 
-            <Button Grid.Row="2" Height="30" Width="30" Command="{Binding AddCommand}">
+            <Button Grid.Row="2"
+                    Style="{DynamicResource Error}"
+                    Height="30" Width="30"
+                    Command="{Binding AddCommand}">
                 +
             </Button>
 
             <Button Grid.Row="2" 
-                    Height="30"
-                    Width="30" 
+                    Style="{DynamicResource Error}"
+                    Height="30" Width="30" 
                     Command="{Binding RemoveCommand}"
                     CommandParameter="{Binding SelectedFileNameConvertion}"
                     HorizontalAlignment="Left">
@@ -113,7 +119,7 @@
             <Separator Margin="10, 0"  VerticalAlignment="Bottom" Background="#FFC1C1C1" />
 
         </Grid>
-        
+
     </Grid>
 
 

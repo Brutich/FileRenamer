@@ -33,6 +33,7 @@ namespace FileRenamer
 
         // команда удаления
         private RelayCommand removeCommand;
+        
         public RelayCommand RemoveCommand
         {
             get
@@ -46,7 +47,8 @@ namespace FileRenamer
                           NameConvertions.Remove(convertion);
                       }
                   },
-                 (obj) => NameConvertions.Count > 0));
+                  (obj) => SelectedFileNameConvertion != null));
+                 //(obj) => NameConvertions.Count > 0));
             }
         }
         
@@ -60,6 +62,7 @@ namespace FileRenamer
             }
         }
 
+
         public ApplicationViewModel()
         {
             NameConvertions = new ObservableCollection<FileNameConvertion>
@@ -70,6 +73,7 @@ namespace FileRenamer
                 new FileNameConvertion { NameOld="Mi5S", NameNew="Xiaomi" },
                 new FileNameConvertion { NameOld="iPhone X", NameNew="Apple" }
             };
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

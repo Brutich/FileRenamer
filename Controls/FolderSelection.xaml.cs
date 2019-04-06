@@ -26,7 +26,8 @@ namespace FileRenamer.Controls
         public FolderSelection()
         {
             InitializeComponent();
-            DataContext = new ApplicationViewModel();
+            DataContext =
+                new ApplicationViewModel(new DefaultDialogService(), new JsonFileService());
         }
 
         public string FolderPath { get; set; }

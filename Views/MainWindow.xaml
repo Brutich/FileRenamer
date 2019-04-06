@@ -9,9 +9,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800" Background="White">
 
-    <Window.DataContext>
-        <local:ApplicationViewModel/>
-    </Window.DataContext>
 
     <Window.Resources>
 
@@ -25,8 +22,8 @@
 
         <StackPanel Background="LightGray">
             <Button Command="{Binding ClickAdd}" Content="New" Style="{DynamicResource Default}" />
-            <Button Content="Open" Style="{DynamicResource Error}"/>
-            <Button Content="Save" Style="{DynamicResource Error}"/>
+            <Button Content="Open" Style="{DynamicResource Error}" Command="{Binding OpenCommand}" />
+            <Button Content="Save" Style="{DynamicResource Error}" Command="{Binding SaveCommand}"/>
         </StackPanel>
 
 
@@ -34,8 +31,8 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="160"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
 
 

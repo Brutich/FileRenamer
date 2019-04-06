@@ -37,7 +37,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -76,6 +78,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DefaultDialogService.cs" />
+    <Compile Include="IDialogService.cs" />
+    <Compile Include="IFileService.cs" />
+    <Compile Include="JsonFileService.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="Controls\FolderSelection.xaml.cs">
       <DependentUpon>FolderSelection.xaml</DependentUpon>

@@ -12,8 +12,65 @@ namespace FileRenamer
     public class ApplicationViewModel : INotifyPropertyChanged
     {
         private FileNameConvertion selectedFileNameConvertion;
+
+        IFileService fileService;
+        IDialogService dialogService;
+
         public ObservableCollection<FileNameConvertion> NameConvertions { get; set; }
 
+        // команда сохранения файла
+        private RelayCommand saveCommand;
+        public RelayCommand SaveCommand
+        {
+            get
+            {
+                return saveCommand ??
+                  (saveCommand = new RelayCommand(obj =>
+                  {
+                      try
+                      {
+                          if (dialogService.SaveFileDialog() == true)
+                          {
+                              fileService.Save(dialogService.FilePath, NameConvertions.ToList());
+                              dialogService.ShowMessage("Файл сохранен");
+                          }
+                      }
+                      catch (Exception ex)
+                      {
+                          dialogService.ShowMessage(ex.Message);
+                      }
+                  }));
+            }
+        }
+          
+        // команда открытия файла
+        private RelayCommand openCommand;
+        public RelayCommand OpenCommand
+        {
+            get
+            {
+                return openCommand ??
+                  (openCommand = new RelayCommand(obj =>
+                  {
+                      try
+                      {
+                          if (dialogService.OpenFileDialog() == true)
+                          {
+                              var nameConvertions = fileService.Open(dialogService.FilePath);
+                              NameConvertions.Clear();
+                              foreach (var p in nameConvertions)
+                                  NameConvertions.Add(p);
+                              dialogService.ShowMessage("Файл открыт");
+                          }
+                      }
+                      catch (Exception ex)
+                      {
+                          dialogService.ShowMessage(ex.Message);
+                      }
+                  }));
+            }
+        }
+        
         // команда добавления нового объекта
         private RelayCommand addCommand;
         public RelayCommand AddCommand
@@ -63,8 +120,12 @@ namespace FileRenamer
         }
 
 
-        public ApplicationViewModel()
+        public ApplicationViewModel(DefaultDialogService dialogService, JsonFileService fileService)
         {
+            this.dialogService = dialogService;
+            this.fileService = fileService;
+
+            // данные по умлолчанию
             NameConvertions = new ObservableCollection<FileNameConvertion>
             {
                 new FileNameConvertion { NameOld="iPhone 7", NameNew="Apple" },

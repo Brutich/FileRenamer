@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Background="LightGray">
-            <Button Command="{Binding ClickAdd}" Content="New" Style="{DynamicResource Default}" />
+            <Button Content="New" Style="{DynamicResource Default}" Command="{Binding NewCommand}" />
             <Button Content="Open" Style="{DynamicResource Error}" Command="{Binding OpenCommand}" />
             <Button Content="Save" Style="{DynamicResource Error}" Command="{Binding SaveCommand}"/>
         </StackPanel>
@@ -45,12 +45,6 @@
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
                            Text= "{Binding Clicks, StringFormat='Content {0}'}" />
-
-                <CheckBox Name="check"
-                          Margin="5"
-                          Content="Checker"/>
-
-                <TextBox Margin="5" IsEnabled="{Binding ElementName=check, Path=IsChecked}"/>
                 <controls:FolderSelection x:Name="folderFrom" Height="20" Margin="5"/>
                 <controls:FolderSelection x:Name="folderTo" Height="20" Margin="5"/>
 

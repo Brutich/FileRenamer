@@ -18,6 +18,22 @@ namespace FileRenamer
 
         public ObservableCollection<FileNameConvertion> NameConvertions { get; set; }
 
+        
+        // команда очистки списка
+        private RelayCommand newCommand;
+        public RelayCommand NewCommand
+        {
+            get
+            {
+                return newCommand ??
+                  (newCommand = new RelayCommand(obj =>
+                  {
+                      NameConvertions.Clear();
+                  }));
+            }
+        }
+
+
         // команда сохранения файла
         private RelayCommand saveCommand;
         public RelayCommand SaveCommand
@@ -89,8 +105,7 @@ namespace FileRenamer
 
 
         // команда удаления
-        private RelayCommand removeCommand;
-        
+        private RelayCommand removeCommand;        
         public RelayCommand RemoveCommand
         {
             get

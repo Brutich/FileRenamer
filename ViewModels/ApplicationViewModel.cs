@@ -152,6 +152,23 @@ namespace FileRenamer
             
         }
 
+        public ApplicationViewModel()
+        {
+            this.dialogService = dialogService;
+            this.fileService = fileService;
+
+            // данные по умлолчанию
+            NameConvertions = new ObservableCollection<FileNameConvertion>
+            {
+                new FileNameConvertion { NameOld="iPhone 7", NameNew="Apple" },
+                new FileNameConvertion { NameOld="Galaxy S7 Edge", NameNew="Samsung" },
+                new FileNameConvertion { NameOld="Elite x3", NameNew="HP" },
+                new FileNameConvertion { NameOld="Mi5S", NameNew="Xiaomi" },
+                new FileNameConvertion { NameOld="iPhone X", NameNew="Apple" }
+            };
+
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {

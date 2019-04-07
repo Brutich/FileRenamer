@@ -97,7 +97,7 @@ namespace FileRenamer
                   (addCommand = new RelayCommand(obj =>
                   {
                       FileNameConvertion convertion = new FileNameConvertion();
-                      NameConvertions.Insert(0, convertion);
+                      NameConvertions.Add(convertion);
                       SelectedFileNameConvertion = convertion;
                   }));
             }
@@ -123,7 +123,24 @@ namespace FileRenamer
                  //(obj) => NameConvertions.Count > 0));
             }
         }
-        
+
+        // команда удаления 2
+        private RelayCommand removeCommand2;
+        public RelayCommand RemoveCommand2
+        {
+            get
+            {
+                return removeCommand2 ??
+                  (removeCommand2 = new RelayCommand(obj =>
+                  {
+                      int index = (int)obj;
+                      NameConvertions.RemoveAt(index);
+                  },
+                  (obj) => true));
+                //(obj) => NameConvertions.Count > 0));
+            }
+        }
+
         public FileNameConvertion SelectedFileNameConvertion
         {
             get { return selectedFileNameConvertion; }
@@ -154,8 +171,6 @@ namespace FileRenamer
 
         public ApplicationViewModel()
         {
-            this.dialogService = dialogService;
-            this.fileService = fileService;
 
             // данные по умлолчанию
             NameConvertions = new ObservableCollection<FileNameConvertion>

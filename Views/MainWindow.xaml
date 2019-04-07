@@ -8,7 +8,7 @@
         xmlns:controls="clr-namespace:FileRenamer.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800" Background="White">
-    
+
     <Window.DataContext>
         <local:ApplicationViewModel/>
     </Window.DataContext>
@@ -73,11 +73,17 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Grid.Column="0" Name="b1"
+                            <Button Grid.Column="0"
                                     Margin="5" Height="20"
                                     VerticalAlignment="Top"
                                     Content="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                        Path=TemplatedParent.(ItemsControl.AlternationIndex)}"
+                                    Command="{Binding RemoveCommand2}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent},
                                         Path=TemplatedParent.(ItemsControl.AlternationIndex)}">
+                                <Button.DataContext>
+                                    <local:ApplicationViewModel/>
+                                </Button.DataContext>
 
                             </Button>
 

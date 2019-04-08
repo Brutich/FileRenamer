@@ -36,7 +36,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="160"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
 
 
@@ -49,8 +49,8 @@
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
                            Text= "{Binding Clicks, StringFormat='Content {0}'}" />
-                <controls:FolderSelection x:Name="folderFrom" Tag="From:" Height="20" Margin="5" />
-                <controls:FolderSelection x:Name="folderTo" Tag="To:" Height="20" Margin="5"/>
+                <controls:FolderSelection x:Name="folderFrom" Tag="From:" Height="20" Margin="5,5,20,5" />
+                <controls:FolderSelection x:Name="folderTo" Tag="To:" Height="20" Margin="5,5,20,5"/>
 
             </StackPanel>
 
@@ -61,8 +61,13 @@
                      SelectionMode="Single"
                      Background="{x:Null}" 
                      BorderBrush="{x:Null}"
-                     AlternationCount="100"
-                     >
+                     AlternationCount="100">
+                
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Focusable" Value="False"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
                 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -76,7 +81,8 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Grid.Column="0"
-                                    Margin="5" Height="20"
+                                    Style="{DynamicResource Error}"
+                                    Margin="5" Height="20" Width="20"
                                     VerticalAlignment="Top"
                                     Content="-">
                                 <Button.InputBindings>
@@ -104,28 +110,26 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Button Grid.Row="2"
-                    Style="{DynamicResource Error}"
-                    Height="30" Width="30"
-                    Command="{Binding AddCommand}">
+            <Button Grid.Row="0"
+                    Margin="11,130,0,10"
+                    Style="{DynamicResource Default}"
+                    Height="20" Width="20"
+                    Command="{Binding AddCommand}" HorizontalAlignment="Left">
                 +
             </Button>
 
-            <Button Grid.Row="2" 
-                    Style="{DynamicResource Error}"
-                    Height="30" Width="30" 
-                    Command="{Binding RemoveCommand}"
-                    CommandParameter="{Binding SelectedFileNameConvertion}"
-                    HorizontalAlignment="Left">
-                -
-            </Button>
 
-            <Separator Margin="10, 0"  VerticalAlignment="Bottom" Background="#FFC1C1C1" />
+            <Separator Margin="10,0,20,0"  VerticalAlignment="Bottom" Background="#FFC1C1C1" />
+
+            <StackPanel Grid.Row="2" Margin="5,5,20,5" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Run" Width="100"
+                    Style="{DynamicResource Default}" 
+                    Command="{Binding NewCommand}" />
+            </StackPanel>
+
 
         </Grid>
-
+        
     </Grid>
-
-
-
+    
 </Window>

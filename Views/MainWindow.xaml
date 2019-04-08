@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:FileRenamer"
         xmlns:viewmodels="clr-namespace:FileRenamer.ViewModels"
         xmlns:controls="clr-namespace:FileRenamer.Controls"
@@ -48,8 +49,8 @@
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
                            Text= "{Binding Clicks, StringFormat='Content {0}'}" />
-                <controls:FolderSelection x:Name="folderFrom" Height="20" Margin="5"/>
-                <controls:FolderSelection x:Name="folderTo" Height="20" Margin="5"/>
+                <controls:FolderSelection x:Name="folderFrom" Tag="From:" Height="20" Margin="5" />
+                <controls:FolderSelection x:Name="folderTo" Tag="To:" Height="20" Margin="5"/>
 
             </StackPanel>
 
@@ -62,6 +63,7 @@
                      BorderBrush="{x:Null}"
                      AlternationCount="100"
                      >
+                
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="{Binding Content.ActualWidth, ElementName=folderTo, Mode=OneWay}">
@@ -76,15 +78,12 @@
                             <Button Grid.Column="0"
                                     Margin="5" Height="20"
                                     VerticalAlignment="Top"
-                                    Content="{Binding RelativeSource={RelativeSource TemplatedParent},
-                                        Path=TemplatedParent.(ItemsControl.AlternationIndex)}"
-                                    Command="{Binding RemoveCommand2}"
-                                    CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent},
-                                        Path=TemplatedParent.(ItemsControl.AlternationIndex)}">
-                                <Button.DataContext>
-                                    <local:ApplicationViewModel/>
-                                </Button.DataContext>
-
+                                    Content="-">
+                                <Button.InputBindings>
+                                    <MouseBinding Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}, Path=DataContext.RemoveCommand2}" 
+                                                  Gesture="LeftClick"
+                                                  CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplatedParent.(ItemsControl.AlternationIndex)}"/>
+                                </Button.InputBindings>
                             </Button>
 
                             <TextBox Grid.Column="1"

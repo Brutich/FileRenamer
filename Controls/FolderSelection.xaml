@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="FileRenamer.Controls.FolderSelection"
+﻿<UserControl x:Name="userControl" x:Class="FileRenamer.Controls.FolderSelection"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -15,10 +15,10 @@
 
         <TextBlock Grid.Column="0"
                    Margin="0"                   
-                   Text="Label:" 
+                   Text="{Binding Tag, ElementName=userControl}" 
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"/>
-        
+
         <TextBox Grid.Column="1"
                  Margin="5,0,5,0"
                  Text="{Binding OpenFolderDialog}" VerticalAlignment="Center"/>

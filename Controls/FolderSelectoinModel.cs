@@ -13,7 +13,16 @@ namespace FileRenamer
         IFileService fileService;
         IDialogService dialogService;
 
-        public string FolderPath { get; set; }
+        private string _folderPath;
+        public string FolderPath
+        {
+            get { return _folderPath; }
+            set
+            {
+                _folderPath = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         // команда открытия директории
@@ -46,7 +55,7 @@ namespace FileRenamer
             this.fileService = fileService;
 
             // данные по умлолчанию
-            FolderPath = "This is the default value";
+            _folderPath = "This is the default value";
         }
 
         public FolderSelectoinModel()

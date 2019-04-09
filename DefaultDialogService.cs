@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using Microsoft.Win32;
 
 namespace FileRenamer
@@ -12,9 +13,11 @@ namespace FileRenamer
     {
         public string FilePath { get; set; }
 
+        public string FolderPath { get; set; }
+
         public bool OpenFileDialog()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.DefaultExt = ".json"; // Default file extension
             openFileDialog.Filter = "File Renamer documents (.json)|*.json"; // Filter files by extension
             if (openFileDialog.ShowDialog() == true)
@@ -25,10 +28,24 @@ namespace FileRenamer
             return false;
         }
 
+        public bool OpenFolderDialog()
+        {
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            folderDialog.ShowNewFolderButton = false;
+            folderDialog.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
+            DialogResult result = folderDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                FolderPath = folderDialog.SelectedPath;
+                return true;
+            }
+            return false;
+        }
 
         public bool SaveFileDialog()
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
             saveFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
             if (saveFileDialog.ShowDialog() == true)
             {
@@ -40,7 +57,7 @@ namespace FileRenamer
 
         public void ShowMessage(string message)
         {
-            MessageBox.Show(message);
+            System.Windows.MessageBox.Show(message);
         }
     }
 }

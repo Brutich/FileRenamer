@@ -16,9 +16,10 @@ namespace FileRenamer
         IFileService fileService;
         IDialogService dialogService;
 
+
         public ObservableCollection<FileNameConvertion> NameConvertions { get; set; }
 
-        
+
         // команда очистки списка
         private RelayCommand newCommand;
         public RelayCommand NewCommand
@@ -86,7 +87,9 @@ namespace FileRenamer
                   }));
             }
         }
-        
+
+
+
         // команда добавления нового объекта
         private RelayCommand addCommand;
         public RelayCommand AddCommand

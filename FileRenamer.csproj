@@ -78,10 +78,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\FolderSelectoinModel.cs" />
     <Compile Include="DefaultDialogService.cs" />
     <Compile Include="IDialogService.cs" />
     <Compile Include="IFileService.cs" />
     <Compile Include="JsonFileService.cs" />
+    <Compile Include="Models\DataObject.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="Controls\FolderSelection.xaml.cs">
       <DependentUpon>FolderSelection.xaml</DependentUpon>

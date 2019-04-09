@@ -26,24 +26,9 @@ namespace FileRenamer.Controls
         public FolderSelection()
         {
             InitializeComponent();
-            DataContext =
-                new ApplicationViewModel(new DefaultDialogService(), new JsonFileService());
+            DataContext = new FolderSelectoinModel(new DefaultDialogService(), new JsonFileService());
         }
 
-        public string FolderPath { get; set; }
-
-        private void OpenFolderDialog(object sender, RoutedEventArgs e)
-        {
-            WinForms.FolderBrowserDialog folderDialog = new WinForms.FolderBrowserDialog();
-            folderDialog.ShowNewFolderButton = false;
-            folderDialog.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
-            WinForms.DialogResult result = folderDialog.ShowDialog();
-
-            if(result == WinForms.DialogResult.OK)
-            {
-                this.FolderPath = folderDialog.SelectedPath;
-            }
-        }
     }
 
 }

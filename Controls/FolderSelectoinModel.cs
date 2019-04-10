@@ -38,7 +38,7 @@ namespace FileRenamer
                       {
                           if (dialogService.OpenFolderDialog() == true)
                           {
-                              FolderPath = dialogService.FilePath;
+                              FolderPath = dialogService.FolderPath;
                           }
                       }
                       catch (Exception ex)

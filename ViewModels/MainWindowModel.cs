@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace FileRenamer
 {
-    public class ApplicationViewModel : INotifyPropertyChanged
+    public class MainWindowModel : INotifyPropertyChanged
     {
         private FileNameConvertion selectedFileNameConvertion;
 
@@ -19,7 +19,7 @@ namespace FileRenamer
 
         public ObservableCollection<FileNameConvertion> NameConvertions { get; set; }
 
-
+        
         // команда очистки списка
         private RelayCommand newCommand;
         public RelayCommand NewCommand
@@ -155,7 +155,7 @@ namespace FileRenamer
         }
 
 
-        public ApplicationViewModel(DefaultDialogService dialogService, JsonFileService fileService)
+        public MainWindowModel(DefaultDialogService dialogService, JsonFileService fileService)
         {
             this.dialogService = dialogService;
             this.fileService = fileService;
@@ -172,7 +172,7 @@ namespace FileRenamer
             
         }
 
-        public ApplicationViewModel()
+        public MainWindowModel()
         {
 
             // данные по умлолчанию

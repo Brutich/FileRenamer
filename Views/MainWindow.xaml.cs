@@ -23,7 +23,10 @@ namespace FileRenamer
         {
             InitializeComponent();
             DataContext =
-                new ApplicationViewModel(new DefaultDialogService(), new JsonFileService());
+                new MainWindowModel(new DefaultDialogService(), new JsonFileService());
+
+            folderFrom.DataContext = new FolderSelectoinModel(new DefaultDialogService(), new JsonFileService());
+            folderTo.DataContext = new FolderSelectoinModel(new DefaultDialogService(), new JsonFileService());
         }
 
     }

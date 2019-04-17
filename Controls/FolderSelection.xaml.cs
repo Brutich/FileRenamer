@@ -26,7 +26,6 @@ namespace FileRenamer.Controls
         public FolderSelection()
         {
             InitializeComponent();
-            DataContext = new FolderSelectoinModel(new DefaultDialogService(), new JsonFileService());
         }
 
     }

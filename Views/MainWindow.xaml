@@ -10,7 +10,7 @@
         Title="MainWindow" Height="500" Width="800" Background="White">
 
     <Window.DataContext>
-        <vm:ApplicationViewModel/>
+        <vm:MainWindowModel/>
     </Window.DataContext>
 
     <Window.Resources>
@@ -95,7 +95,7 @@
                                      Margin="5"
                                      Height="20"
                                      VerticalAlignment="Top"
-                                     Text="{Binding Path=NameNew}"/>
+                                     Text="{Binding Path=NameOld}"/>
 
                             <TextBlock Grid.Column="2" Text="-->" VerticalAlignment="Center"/>
 
@@ -103,7 +103,7 @@
                                      Margin="5,5,-5,0"
                                      Height="20"
                                      VerticalAlignment="Top"
-                                     Text="{Binding Path=NameOld}"/>
+                                     Text="{Binding Path=NameNew}"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

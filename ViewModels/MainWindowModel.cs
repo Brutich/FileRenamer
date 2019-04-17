@@ -17,9 +17,11 @@ namespace FileRenamer
         IDialogService dialogService;
 
 
+        public string FolderPathFrom { get; set; }
+        public string FolderPathTo { get; set; }
         public ObservableCollection<FileNameConvertion> NameConvertions { get; set; }
 
-        
+
         // команда очистки списка
         private RelayCommand newCommand;
         public RelayCommand NewCommand

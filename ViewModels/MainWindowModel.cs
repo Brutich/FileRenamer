@@ -17,11 +17,24 @@ namespace FileRenamer
         IDialogService dialogService;
 
 
-        public string FolderPathFrom { get; set; }
-        public string FolderPathTo { get; set; }
+        private FolderSelectoinModel folderPathFrom;
+        public FolderSelectoinModel FolderPathFrom
+        {
+            get { return folderPathFrom; }
+            set { folderPathFrom = value; OnPropertyChanged(); }
+        }
+        
+        private FolderSelectoinModel folderPathTo;
+        public FolderSelectoinModel FolderPathTo
+        {
+            get { return folderPathTo; }
+            set { folderPathTo = value; OnPropertyChanged(); }
+        }
+
+
         public ObservableCollection<FileNameConvertion> NameConvertions { get; set; }
 
-
+        
         // команда очистки списка
         private RelayCommand newCommand;
         public RelayCommand NewCommand
@@ -110,33 +123,13 @@ namespace FileRenamer
 
 
         // команда удаления
-        private RelayCommand removeCommand;        
+        private RelayCommand removeCommand;
         public RelayCommand RemoveCommand
         {
             get
             {
                 return removeCommand ??
                   (removeCommand = new RelayCommand(obj =>
-                  {
-                      FileNameConvertion convertion = obj as FileNameConvertion;
-                      if (convertion != null)
-                      {
-                          NameConvertions.Remove(convertion);
-                      }
-                  },
-                  (obj) => SelectedFileNameConvertion != null));
-                 //(obj) => NameConvertions.Count > 0));
-            }
-        }
-
-        // команда удаления 2
-        private RelayCommand removeCommand2;
-        public RelayCommand RemoveCommand2
-        {
-            get
-            {
-                return removeCommand2 ??
-                  (removeCommand2 = new RelayCommand(obj =>
                   {
                       int index = (int)obj;
                       NameConvertions.RemoveAt(index);
@@ -152,12 +145,28 @@ namespace FileRenamer
             set
             {
                 selectedFileNameConvertion = value;
-                OnPropertyChanged("SelectedFileNameConvertion");
+                OnPropertyChanged("SelectedFileNameConvertion");               
             }
         }
 
 
-        public MainWindowModel(DefaultDialogService dialogService, JsonFileService fileService)
+        // команда выполнения
+        private RelayCommand runCommand;
+        public RelayCommand RunCommand
+        {
+            get
+            {
+                return runCommand ??
+                  (runCommand = new RelayCommand(obj =>
+                  {
+                      dialogService.ShowMessage("Переименование выполнено из " + folderPathFrom.FolderPath + "\nв " + folderPathTo.FolderPath);
+                  },
+                  (obj) => true));
+            }
+        }
+
+
+        public MainWindowModel(IDialogService dialogService, IFileService fileService)
         {
             this.dialogService = dialogService;
             this.fileService = fileService;
@@ -171,7 +180,10 @@ namespace FileRenamer
                 new FileNameConvertion { NameOld="Mi5S", NameNew="Xiaomi" },
                 new FileNameConvertion { NameOld="iPhone X", NameNew="Apple" }
             };
-            
+
+            FolderPathFrom = new FolderSelectoinModel(dialogService, fileService);
+            FolderPathTo = new FolderSelectoinModel(dialogService, fileService);
+
         }
 
         public MainWindowModel()

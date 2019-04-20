@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FileRenamer
 {
-    class FolderSelectoinModel : INotifyPropertyChanged
+    public class FolderSelectoinModel : INotifyPropertyChanged
     {
         IFileService fileService;
         IDialogService dialogService;
@@ -23,7 +23,6 @@ namespace FileRenamer
                 OnPropertyChanged();
             }
         }
-
 
         // команда открытия директории
         private RelayCommand browseCommand;
@@ -49,7 +48,7 @@ namespace FileRenamer
             }
         }
 
-        public FolderSelectoinModel(DefaultDialogService dialogService, JsonFileService fileService)
+        public FolderSelectoinModel(IDialogService dialogService, IFileService fileService)
         {
             this.dialogService = dialogService;
             this.fileService = fileService;

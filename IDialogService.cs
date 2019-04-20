@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileRenamer
 {
-    interface IDialogService
+    public interface IDialogService
     {
         void ShowMessage(string message);   // показ сообщения
         string FilePath { get; set; }   // путь к выбранному файлу        

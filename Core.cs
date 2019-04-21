@@ -17,8 +17,8 @@ namespace FileRenamer
                 try
                 {
                     File.Copy(
-                        Path.Combine(folderPathFrom, nc.NameOld), 
-                        Path.Combine(folderPathTo, nc.NameNew),
+                        Path.Combine(folderPathFrom, nc.NameOriginal), 
+                        Path.Combine(folderPathTo, nc.NameModified),
                         true);
                 }
                 catch (Exception ex)

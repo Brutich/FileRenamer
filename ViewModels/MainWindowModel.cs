@@ -11,11 +11,11 @@ namespace FileRenamer
 {
     public class MainWindowModel : INotifyPropertyChanged
     {
-        private FileNameConvertion selectedFileNameConvertion;
 
         IFileService fileService;
         IDialogService dialogService;
 
+        private bool IsAllDataCorrect = true;
 
         private FolderSelectoinModel folderPathFrom;
         public FolderSelectoinModel FolderPathFrom
@@ -83,6 +83,7 @@ namespace FileRenamer
             }
         }
           
+
         // команда открытия файла
         private RelayCommand openCommand;
         public RelayCommand OpenCommand
@@ -114,7 +115,6 @@ namespace FileRenamer
         }
 
 
-
         // команда добавления нового объекта
         private RelayCommand addCommand;
         public RelayCommand AddCommand
@@ -126,7 +126,6 @@ namespace FileRenamer
                   {
                       FileNameConvertion convertion = new FileNameConvertion();
                       NameConvertions.Add(convertion);
-                      SelectedFileNameConvertion = convertion;
                   }));
             }
         }
@@ -149,17 +148,6 @@ namespace FileRenamer
             }
         }
 
-        public FileNameConvertion SelectedFileNameConvertion
-        {
-            get { return selectedFileNameConvertion; }
-            set
-            {
-                selectedFileNameConvertion = value;
-                OnPropertyChanged("SelectedFileNameConvertion");               
-            }
-        }
-
-
         // команда выполнения
         private RelayCommand runCommand;
         public RelayCommand RunCommand
@@ -179,7 +167,7 @@ namespace FileRenamer
                       }
                       
                   },
-                  (obj) => true));
+                  (obj) => IsAllDataCorrect));
             }
         }
 
@@ -203,7 +191,7 @@ namespace FileRenamer
             // данные по умлолчанию
             NameConvertions = new ObservableCollection<FileNameConvertion>
             {
-                // new FileNameConvertion { NameOld="iPhone XS", NameNew="Apple" }
+                // new FileNameConvertion { NameOriginal="iPhone XS", NameModified="Apple" }
             };
             
         }

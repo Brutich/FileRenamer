@@ -7,7 +7,7 @@
         xmlns:vm="clr-namespace:FileRenamer"
         xmlns:controls="clr-namespace:FileRenamer.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800" Background="White">
+        Title="File Renamer" Height="500" Width="800" Background="White">
 
     <Window.DataContext>
         <vm:MainWindowModel/>
@@ -56,8 +56,6 @@
 
             <ListBox x:Name="listBox" Grid.Row="1"
                      ItemsSource="{Binding NameConvertions}"
-                     SelectedItem="{Binding SelectedFileNameConvertion}"
-                     SelectionMode="Single"
                      Background="{x:Null}" 
                      BorderBrush="{x:Null}"
                      AlternationCount="100">
@@ -65,6 +63,7 @@
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}">
                         <Setter Property="Focusable" Value="False"/>
+                        
                     </Style>
                 </ListBox.ItemContainerStyle>
                 
@@ -95,7 +94,7 @@
                                      Margin="5"
                                      Height="20"
                                      VerticalAlignment="Top"
-                                     Text="{Binding Path=NameOld}"/>
+                                     Text="{Binding Path=NameOriginal}"/>
 
                             <TextBlock Grid.Column="2" Text="-->" VerticalAlignment="Center"/>
 
@@ -103,7 +102,7 @@
                                      Margin="5,5,-5,0"
                                      Height="20"
                                      VerticalAlignment="Top"
-                                     Text="{Binding Path=NameNew}"/>
+                                     Text="{Binding Path=NameModified}"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

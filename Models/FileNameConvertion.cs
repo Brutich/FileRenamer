@@ -10,29 +10,39 @@ namespace FileRenamer
 {
     public class FileNameConvertion : INotifyPropertyChanged
     {
-        private string nameOld;
-        private string nameNew;
+        private string nameOriginal;
+        private string nameModified;
+        private bool isCorrect;
 
 
-        public string NameOld
+        public string NameOriginal
         {
-            get { return nameOld; }
+            get { return nameOriginal; }
             set
             {
-                nameOld = value;
-                OnPropertyChanged("NameOld");
+                nameOriginal = value;
+                OnPropertyChanged("NameOriginal");
             }
         }
-        public string NameNew
+        public string NameModified
         {
-            get { return nameNew; }
+            get { return nameModified; }
             set
             {
-                nameNew = value;
-                OnPropertyChanged("NameNew");
+                nameModified = value;
+                OnPropertyChanged("NameModified");
             }
         }
 
+        public bool IsCorrect
+        {
+            get { return isCorrect; }
+            set
+            {
+                isCorrect = (nameOriginal != "") | (nameModified != "");
+                OnPropertyChanged("IsCorrect");
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

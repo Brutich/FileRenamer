@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using System.Reflection;
 
 namespace FileRenamer
 {
@@ -14,6 +15,8 @@ namespace FileRenamer
 
         IFileService fileService;
         IDialogService dialogService;
+
+        public string Version { get; set; }
 
         private bool IsAllDataCorrect = true;
 
@@ -183,6 +186,7 @@ namespace FileRenamer
             // данные по умлолчанию
             NameConvertions = new ObservableCollection<FileNameConvertion> { };
 
+            Version = "v: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         public MainWindowModel()

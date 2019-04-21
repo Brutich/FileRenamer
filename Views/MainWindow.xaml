@@ -29,7 +29,8 @@
             <Button Content="Save as..." Style="{DynamicResource Error}" Command="{Binding SaveAsCommand}"/>
         </StackPanel>
 
-
+        <TextBlock Grid.Column="0" Margin="5" Text="{Binding Path=Version}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="#FF818181"/>
+        
         <Grid Grid.Column="1" Background="WhiteSmoke">
 
             <Grid.RowDefinitions>

@@ -75,6 +75,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controls\FolderSelectoinModel.cs" />
+    <Compile Include="Core.cs" />
     <Compile Include="DefaultDialogService.cs" />
     <Compile Include="IDialogService.cs" />
     <Compile Include="IFileService.cs" />

@@ -54,7 +54,7 @@ namespace FileRenamer
             this.fileService = fileService;
 
             // данные по умлолчанию
-            _folderPath = "This is the default value";
+            _folderPath = ""; // "This is the default value";
         }
 
         public FolderSelectoinModel()

@@ -35,7 +35,7 @@ namespace FileRenamer
         public ObservableCollection<FileNameConvertion> NameConvertions { get; set; }
 
         
-        // команда очистки списка
+        // команда очистки формы
         private RelayCommand newCommand;
         public RelayCommand NewCommand
         {
@@ -45,19 +45,21 @@ namespace FileRenamer
                   (newCommand = new RelayCommand(obj =>
                   {
                       NameConvertions.Clear();
+                      folderPathFrom.FolderPath = "";
+                      folderPathTo.FolderPath = "";
                   }));
             }
         }
 
 
         // команда сохранения файла
-        private RelayCommand saveCommand;
-        public RelayCommand SaveCommand
+        private RelayCommand saveAsCommand;
+        public RelayCommand SaveAsCommand
         {
             get
             {
-                return saveCommand ??
-                  (saveCommand = new RelayCommand(obj =>
+                return saveAsCommand ??
+                  (saveAsCommand = new RelayCommand(obj =>
                   {
                       try
                       {
@@ -101,7 +103,6 @@ namespace FileRenamer
                               NameConvertions.Clear();
                               foreach (var c in nameConvertions)
                                   NameConvertions.Add(c);
-                              dialogService.ShowMessage("Файл открыт");
                           }
                       }
                       catch (Exception ex)
@@ -168,7 +169,15 @@ namespace FileRenamer
                 return runCommand ??
                   (runCommand = new RelayCommand(obj =>
                   {
-                      dialogService.ShowMessage("Переименование выполнено из " + folderPathFrom.FolderPath + "\nв " + folderPathTo.FolderPath);
+                      if( Core.Execute(folderPathFrom.FolderPath, folderPathTo.FolderPath, NameConvertions) )
+                      {
+                          dialogService.ShowMessage("Копирование файлов завершено успешно");
+                      }
+                      else
+                      {
+                          dialogService.ShowMessage("Копирование файлов завершено c ошибкой");
+                      }
+                      
                   },
                   (obj) => true));
             }
@@ -180,34 +189,23 @@ namespace FileRenamer
             this.dialogService = dialogService;
             this.fileService = fileService;
 
-            // данные по умлолчанию
-            NameConvertions = new ObservableCollection<FileNameConvertion>
-            {
-                new FileNameConvertion { NameOld="iPhone 7", NameNew="Apple" },
-                new FileNameConvertion { NameOld="Galaxy S7 Edge", NameNew="Samsung" },
-                new FileNameConvertion { NameOld="Elite x3", NameNew="HP" },
-                new FileNameConvertion { NameOld="Mi5S", NameNew="Xiaomi" },
-                new FileNameConvertion { NameOld="iPhone X", NameNew="Apple" }
-            };
-
             FolderPathFrom = new FolderSelectoinModel(dialogService, fileService);
             FolderPathTo = new FolderSelectoinModel(dialogService, fileService);
+
+            // данные по умлолчанию
+            NameConvertions = new ObservableCollection<FileNameConvertion> { };
 
         }
 
         public MainWindowModel()
         {
-
+            
             // данные по умлолчанию
             NameConvertions = new ObservableCollection<FileNameConvertion>
             {
-                new FileNameConvertion { NameOld="iPhone 7", NameNew="Apple" },
-                new FileNameConvertion { NameOld="Galaxy S7 Edge", NameNew="Samsung" },
-                new FileNameConvertion { NameOld="Elite x3", NameNew="HP" },
-                new FileNameConvertion { NameOld="Mi5S", NameNew="Xiaomi" },
-                new FileNameConvertion { NameOld="iPhone X", NameNew="Apple" }
+                // new FileNameConvertion { NameOld="iPhone XS", NameNew="Apple" }
             };
-
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

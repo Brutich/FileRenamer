@@ -26,7 +26,7 @@
         <StackPanel Background="LightGray">
             <Button Content="New" Style="{DynamicResource Default}" Command="{Binding NewCommand}" />
             <Button Content="Open" Style="{DynamicResource Error}" Command="{Binding OpenCommand}" />
-            <Button Content="Save" Style="{DynamicResource Error}" Command="{Binding SaveCommand}"/>
+            <Button Content="Save as..." Style="{DynamicResource Error}" Command="{Binding SaveAsCommand}"/>
         </StackPanel>
 
 

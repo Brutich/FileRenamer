@@ -23,13 +23,13 @@ namespace FileRenamer
             return phones;
         }
 
-        public void Save(string filename, List<FileNameConvertion> phonesList)
+        public void Save(string filename, DataObject dataObject)
         {
             DataContractJsonSerializer jsonFormatter =
-                new DataContractJsonSerializer(typeof(List<FileNameConvertion>));
+                new DataContractJsonSerializer(typeof(DataObject));
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
-                jsonFormatter.WriteObject(fs, phonesList);
+                jsonFormatter.WriteObject(fs, dataObject);
             }
         }
     }

@@ -8,19 +8,11 @@ using System.Runtime.CompilerServices;
 
 namespace FileRenamer
 {
-    class DataObject : INotifyPropertyChanged
+    public class DataObject
     {
-        private FileNameConvertion nameConvertion;
-        private string folderPathFrom;
-        private string folderPathTo;
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
+        public List<FileNameConvertion> NameConvertions;
+        public string PathFrom { get; set; }
+        public string PathTo { get; set; }
 
     }
 }

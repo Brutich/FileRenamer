@@ -9,6 +9,6 @@ namespace FileRenamer
     public interface IFileService
     {
         List<FileNameConvertion> Open(string filename);
-        void Save(string filename, List<FileNameConvertion> phonesList);        
+        void Save(string filename, DataObject dataObject);        
     }
 }

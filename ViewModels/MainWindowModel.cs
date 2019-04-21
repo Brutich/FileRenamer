@@ -63,7 +63,13 @@ namespace FileRenamer
                       {
                           if (dialogService.SaveFileDialog() == true)
                           {
-                              fileService.Save(dialogService.FilePath, NameConvertions.ToList());
+                              DataObject dataObject = new DataObject()
+                              {
+                                  NameConvertions = this.NameConvertions.ToList(),
+                                  PathFrom = folderPathFrom.FolderPath,
+                                  PathTo = folderPathTo.FolderPath
+                              };
+                              fileService.Save(dialogService.FilePath, dataObject);
                               dialogService.ShowMessage("Файл сохранен");
                           }
                       }

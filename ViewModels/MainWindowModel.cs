@@ -94,10 +94,13 @@ namespace FileRenamer
                       {
                           if (dialogService.OpenFileDialog() == true)
                           {
-                              var nameConvertions = fileService.Open(dialogService.FilePath);
+                              DataObject dataObject = fileService.Open(dialogService.FilePath);
+                              folderPathTo.FolderPath = dataObject.PathTo;
+                              folderPathFrom.FolderPath = dataObject.PathFrom;
+                              List<FileNameConvertion> nameConvertions = dataObject.NameConvertions;
                               NameConvertions.Clear();
-                              foreach (var p in nameConvertions)
-                                  NameConvertions.Add(p);
+                              foreach (var c in nameConvertions)
+                                  NameConvertions.Add(c);
                               dialogService.ShowMessage("Файл открыт");
                           }
                       }

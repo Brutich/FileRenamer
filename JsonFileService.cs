@@ -10,17 +10,17 @@ namespace FileRenamer
 {
     public class JsonFileService : IFileService
     {
-        public List<FileNameConvertion> Open(string filename)
+        public DataObject Open(string filename)
         {
-            List<FileNameConvertion> phones = new List<FileNameConvertion>();
+            DataObject dataObject = new DataObject();
             DataContractJsonSerializer jsonFormatter =
-                new DataContractJsonSerializer(typeof(List<FileNameConvertion>));
+                new DataContractJsonSerializer(typeof(DataObject));
             using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
             {
-                phones = jsonFormatter.ReadObject(fs) as List<FileNameConvertion>;
+                dataObject = jsonFormatter.ReadObject(fs) as DataObject;
             }
 
-            return phones;
+            return dataObject;
         }
 
         public void Save(string filename, DataObject dataObject)

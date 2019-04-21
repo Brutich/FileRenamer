@@ -8,7 +8,7 @@ namespace FileRenamer
 {
     public interface IFileService
     {
-        List<FileNameConvertion> Open(string filename);
+        DataObject Open(string filename);
         void Save(string filename, DataObject dataObject);        
     }
 }

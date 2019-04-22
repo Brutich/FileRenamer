@@ -18,8 +18,8 @@ namespace FileRenamer
         public bool OpenFileDialog()
         {
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.DefaultExt = ".json"; // Default file extension
-            openFileDialog.Filter = "File Renamer documents (.json)|*.json"; // Filter files by extension
+            openFileDialog.DefaultExt = ".bsd"; // Default file extension
+            openFileDialog.Filter = "File Renamer files (.bsd)|*.bsd"; // Filter files by extension
             if (openFileDialog.ShowDialog() == true)
             {
                 FilePath = openFileDialog.FileName;
@@ -46,7 +46,7 @@ namespace FileRenamer
         public bool SaveFileDialog()
         {
             Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
-            saveFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+            saveFileDialog.Filter = "File Renamer files (*.bsd)|*.bsd|All files (*.*)|*.*";
             if (saveFileDialog.ShowDialog() == true)
             {
                 FilePath = saveFileDialog.FileName;

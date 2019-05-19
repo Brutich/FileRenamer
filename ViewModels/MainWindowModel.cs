@@ -12,13 +12,12 @@ namespace FileRenamer
 {
     public class MainWindowModel : INotifyPropertyChanged
     {
-
-        IFileService fileService;
-        IDialogService dialogService;
+        internal IFileService fileService;
+        internal IDialogService dialogService;
 
         public string Version { get; set; }
 
-        private bool IsAllDataCorrect = true;
+        private readonly bool IsAllDataCorrect = true;
 
         private FolderSelectoinModel folderPathFrom;
         public FolderSelectoinModel FolderPathFrom
@@ -147,7 +146,6 @@ namespace FileRenamer
                       NameConvertions.RemoveAt(index);
                   },
                   (obj) => true));
-                //(obj) => NameConvertions.Count > 0));
             }
         }
 
@@ -189,6 +187,7 @@ namespace FileRenamer
             Version = "v: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
+        
         public MainWindowModel()
         {
             
@@ -199,6 +198,7 @@ namespace FileRenamer
             };
             
         }
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

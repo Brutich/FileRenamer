@@ -22,11 +22,7 @@ namespace FileRenamer
         public MainWindow()
         {
             InitializeComponent();
-            MainWindowModel mainViewModel = new MainWindowModel(new DefaultDialogService(), new JsonFileService());
 
-            DataContext = mainViewModel;
-            folderFrom.DataContext = mainViewModel.FolderPathFrom;
-            folderTo.DataContext = mainViewModel.FolderPathTo;
         }
     }
 }

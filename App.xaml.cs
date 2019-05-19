@@ -13,51 +13,38 @@ namespace FileRenamer
     /// </summary>
     public partial class App : Application
     {
+
         App()
         {
             InitializeComponent();
         }
 
         [STAThread]
-        static void Main()
+        static void Main(String[] args)
         {
+
             App app = new App();
             MainWindow window = new MainWindow();
-            app.Run(window);
-        }
+            MainWindowModel mainViewModel = new MainWindowModel(new DefaultDialogService(), new JsonFileService());
 
-        /*
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            // Check if this was launched by double-clicking a doc. If so, use that as the
-            // startup file name.
-            if (AppDomain.CurrentDomain.SetupInformation
-                .ActivationArguments.ActivationData != null
-            && AppDomain.CurrentDomain.SetupInformation
-                .ActivationArguments.ActivationData.Length > 0)
+            if (args != null)
             {
-                string fname = "No filename given";
-                try
-                {
-                    fname = AppDomain.CurrentDomain.SetupInformation
-                            .ActivationArguments.ActivationData[0];
-
-                    // It comes in as a URI; this helps to convert it to a path.
-                    Uri uri = new Uri(fname);
-                    fname = uri.LocalPath;
-
-                    this.Properties["FolderPathFrom"] = fname;
-                    
-                }
-                catch (Exception ex)
-                {
-                    // For some reason, this couldn't be read as a URI.
-                    // Do what you must...
-                }
+                string fileNamePassedIn = args[0];
+                DataObject dataObject = mainViewModel.fileService.Open(fileNamePassedIn);
+                mainViewModel.FolderPathTo.FolderPath = dataObject.PathTo;
+                mainViewModel.FolderPathFrom.FolderPath = dataObject.PathFrom;
+                List<FileNameConvertion> nameConvertions = dataObject.NameConvertions;
+                mainViewModel.NameConvertions.Clear();
+                foreach (var c in nameConvertions)
+                    mainViewModel.NameConvertions.Add(c);
             }
 
-            base.OnStartup(e);
+            window.DataContext = mainViewModel;
+            window.folderFrom.DataContext = mainViewModel.FolderPathFrom;
+            window.folderTo.DataContext = mainViewModel.FolderPathTo;            
+
+            app.Run(window);
+
         }
-        */
     }
 }

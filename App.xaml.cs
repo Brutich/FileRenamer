@@ -27,7 +27,7 @@ namespace FileRenamer
             MainWindow window = new MainWindow();
             MainWindowModel mainViewModel = new MainWindowModel(new DefaultDialogService(), new JsonFileService());
 
-            if (args != null)
+            if (args.Count() > 0)
             {
                 string fileNamePassedIn = args[0];
                 DataObject dataObject = mainViewModel.fileService.Open(fileNamePassedIn);

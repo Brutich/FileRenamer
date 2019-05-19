@@ -10,8 +10,7 @@ namespace FileRenamer
 {
     public class FolderSelectoinModel : INotifyPropertyChanged
     {
-        IFileService fileService;
-        IDialogService dialogService;
+        readonly IDialogService dialogService;
 
         private string folderPath;
         public string FolderPath
@@ -48,10 +47,9 @@ namespace FileRenamer
             }
         }
 
-        public FolderSelectoinModel(IDialogService dialogService, IFileService fileService)
+        public FolderSelectoinModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
-            this.fileService = fileService;
 
             // данные по умлолчанию
             folderPath = ""; // "This is the default value";

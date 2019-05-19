@@ -178,13 +178,13 @@ namespace FileRenamer
             this.dialogService = dialogService;
             this.fileService = fileService;
 
-            FolderPathFrom = new FolderSelectoinModel(dialogService, fileService);
-            FolderPathTo = new FolderSelectoinModel(dialogService, fileService);
+            FolderPathFrom = new FolderSelectoinModel(dialogService);
+            FolderPathTo = new FolderSelectoinModel(dialogService);
 
             // данные по умлолчанию
             NameConvertions = new ObservableCollection<FileNameConvertion> { };
 
-            Version = "v: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            Version = "v1.0.0-beta"; //+ Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         

@@ -13,5 +13,38 @@ namespace FileRenamer
     /// </summary>
     public partial class App : Application
     {
+
+        App()
+        {
+            InitializeComponent();
+        }
+
+        [STAThread]
+        static void Main(String[] args)
+        {
+
+            App app = new App();
+            MainWindow window = new MainWindow();
+            MainWindowModel mainViewModel = new MainWindowModel(new DefaultDialogService(), new JsonFileService());
+
+            if (args.Count() > 0)
+            {
+                string fileNamePassedIn = args[0];
+                DataObject dataObject = mainViewModel.fileService.Open(fileNamePassedIn);
+                mainViewModel.FolderPathTo.FolderPath = dataObject.PathTo;
+                mainViewModel.FolderPathFrom.FolderPath = dataObject.PathFrom;
+                List<FileNameConvertion> nameConvertions = dataObject.NameConvertions;
+                mainViewModel.NameConvertions.Clear();
+                foreach (var c in nameConvertions)
+                    mainViewModel.NameConvertions.Add(c);
+            }
+
+            window.DataContext = mainViewModel;
+            window.folderFrom.DataContext = mainViewModel.FolderPathFrom;
+            window.folderTo.DataContext = mainViewModel.FolderPathTo;            
+
+            app.Run(window);
+
+        }
     }
 }

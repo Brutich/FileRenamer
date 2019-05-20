@@ -7,7 +7,8 @@
         xmlns:vm="clr-namespace:FileRenamer"
         xmlns:controls="clr-namespace:FileRenamer.Controls"
         mc:Ignorable="d"
-        Title="File Renamer" Height="500" Width="800" Background="White">
+        Title="File Renamer" Height="500" Width="800" Background="White"         
+        Icon="/FileRenamer;component/Resources/IconsmindOutlineRename.ico">
 
     <Window.DataContext>
         <vm:MainWindowModel/>

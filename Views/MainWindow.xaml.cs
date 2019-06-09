@@ -21,8 +21,7 @@ namespace FileRenamer
     {
         public MainWindow()
         {
-            InitializeComponent();
-
+            InitializeComponent();            
         }
     }
 }

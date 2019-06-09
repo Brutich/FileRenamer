@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using System.Reflection;
+using System.Windows;
 
 namespace FileRenamer
 {
@@ -172,6 +173,22 @@ namespace FileRenamer
             }
         }
 
+        // команда отмены
+        private RelayCommand cancelCommand;
+        public RelayCommand CancelCommand
+        {
+            get
+            {
+                return cancelCommand ??
+                  (cancelCommand = new RelayCommand(obj =>
+                  {
+                      Window window = (Window)obj;
+                      window.Close();
+                  },
+                  (obj) => true));
+            }
+        }
+
 
         public MainWindowModel(IDialogService dialogService, IFileService fileService)
         {
@@ -207,4 +224,5 @@ namespace FileRenamer
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
+
 }

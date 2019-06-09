@@ -8,19 +8,18 @@
         xmlns:controls="clr-namespace:FileRenamer.Controls"
         mc:Ignorable="d"
         Title="File Renamer" Height="500" Width="800" Background="White"         
-        Icon="/FileRenamer;component/Resources/IconsmindOutlineRename.ico">
+        Icon="/FileRenamer;component/Resources/IconsmindOutlineRename.ico" WindowStartupLocation="CenterScreen"
+        >
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:MainWindowModel/>
-    </Window.DataContext>
-
-    <Window.Resources>
-
-    </Window.Resources>
+    </Window.DataContext>-->     
+    
     
     <Window.InputBindings>
         <KeyBinding Modifiers="Control" Key="O" Command="{Binding OpenCommand}"/>
         <KeyBinding Modifiers="Control" Key="N" Command="{Binding NewCommand}"/>
+        <KeyBinding Key="Esc" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=window}"/>
     </Window.InputBindings>
     
     <Grid>
@@ -130,6 +129,10 @@
                 <Button Content="Run" Width="100"
                     Style="{DynamicResource Default}" 
                     Command="{Binding RunCommand}" />
+                <Button Content="Cancel" Width="100"
+                    Style="{DynamicResource Error}" 
+                    Command="{Binding CancelCommand, Mode=OneWay}"
+                    CommandParameter="{Binding ElementName=window}" />
             </StackPanel>
 
 

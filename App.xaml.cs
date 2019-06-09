@@ -26,6 +26,8 @@ namespace FileRenamer
             App app = new App();
             MainWindow window = new MainWindow();
             MainWindowModel mainViewModel = new MainWindowModel(new DefaultDialogService(), new JsonFileService());
+            // WIP
+            //mainViewModel.RequestClose += delegate { window.Close(); };
 
             if (args.Count() > 0)
             {
@@ -41,8 +43,7 @@ namespace FileRenamer
 
             window.DataContext = mainViewModel;
             window.folderFrom.DataContext = mainViewModel.FolderPathFrom;
-            window.folderTo.DataContext = mainViewModel.FolderPathTo;            
-
+            window.folderTo.DataContext = mainViewModel.FolderPathTo;
             app.Run(window);
 
         }

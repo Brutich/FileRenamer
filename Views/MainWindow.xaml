@@ -13,29 +13,31 @@
 
     <!--<Window.DataContext>
         <vm:MainWindowModel/>
-    </Window.DataContext>-->     
-    
-    
+    </Window.DataContext>-->
+
+
     <Window.InputBindings>
         <KeyBinding Modifiers="Control" Key="O" Command="{Binding OpenCommand}"/>
         <KeyBinding Modifiers="Control" Key="N" Command="{Binding NewCommand}"/>
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=window}"/>
     </Window.InputBindings>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Background="LightGray">
-            <Button Content="New" Style="{DynamicResource Default}" Command="{Binding NewCommand}" />
-            <Button Content="Open" Style="{DynamicResource Error}" Command="{Binding OpenCommand}" />
-            <Button Content="Save as..." Style="{DynamicResource Error}" Command="{Binding SaveAsCommand}"/>
-        </StackPanel>
+        <Expander Margin="0,0,0,0" ExpandDirection="Left" IsExpanded="True" Panel.ZIndex="1" Background="LightGray" Style="{DynamicResource ExpanderStyle_TypeA}">
+            <StackPanel Width="100" >
+                <Button Content="New" Style="{DynamicResource Default}" Command="{Binding NewCommand}" />
+                <Button Content="Open" Style="{DynamicResource Error}" Command="{Binding OpenCommand}" />
+                <Button Content="Save as..." Style="{DynamicResource Error}" Command="{Binding SaveAsCommand}"/>
+            </StackPanel>
+            <!--<TextBlock Grid.Column="0" Margin="5" Text="{Binding Path=Version}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#FF818181"/>-->
+        </Expander>
 
-        <TextBlock Grid.Column="0" Margin="5" Text="{Binding Path=Version}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#FF818181"/>
-        
+
         <Grid Grid.Column="1" Background="WhiteSmoke">
 
             <Grid.RowDefinitions>
@@ -65,14 +67,14 @@
                      Background="{x:Null}" 
                      BorderBrush="{x:Null}"
                      AlternationCount="100">
-                
+
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}">
                         <Setter Property="Focusable" Value="False"/>
-                        
+
                     </Style>
                 </ListBox.ItemContainerStyle>
-                
+
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="{Binding Content.ActualWidth, ElementName=folderTo, Mode=OneWay}">
@@ -137,7 +139,7 @@
 
 
         </Grid>
-        
+
     </Grid>
-    
+
 </Window>
